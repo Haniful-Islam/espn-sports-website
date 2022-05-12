@@ -1,0 +1,45 @@
+[
+    {
+        "id": 1,
+        "name": "Archery Feet",
+        "price": "$100",
+        "description": "Sports photography is the capture of sports, games, exercises, and other activities through photography",
+        "img": "https://i.ibb.co/4JJr4mP/archeryfeet.jpg"
+
+    },
+    {
+        "id": 2,
+        "name": "Blind Sprinter",
+        "price": "$150",
+        "description": "Sports photography is the capture of sports, games, exercises, and other activities through photography",
+        "img": "https://i.ibb.co/Z1D1sr6/blind-sprinter.jpg"
+    },
+    {
+        "id": 3,
+        "name": "Chrome Helmet",
+        "price": "$100",
+        "description": "Sports photography is the capture of sports, games, exercises, and other activities through photography",
+        "img": "https://i.ibb.co/Vv4052F/chrome-helmet.jpg"
+    },
+    {
+        "id": 4,
+        "name": "Cyclist Winner",
+        "price": "$50",
+        "description": "Sports photography is the capture of sports, games, exercises, and other activities through photography",
+        "img": "https://i.ibb.co/thmjhWS/cyclist-winner.jpg"
+    },
+    {
+        "id": 5,
+        "name": "Fast WheelChair",
+        "price": "$100",
+        "description": "Sports photography is the capture of sports, games, exercises, and other activities through photography",
+        "img": "https://i.ibb.co/y47wcwr/fast-wheelchair.jpg"
+    },
+    {
+        "id": 6,
+        "name": "Long Jump",
+        "price": "$100",
+        "description": "Sports photography is the capture of sports, games, exercises, and other activities through photography",
+        "img": "https://i.ibb.co/f4rmjvx/long-jump.jpg"
+    }
+]
