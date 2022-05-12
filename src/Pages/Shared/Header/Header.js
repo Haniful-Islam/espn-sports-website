@@ -1,15 +1,15 @@
 import React from 'react';
 import { Container, Nav, Navbar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import espn from '../../../images/espn.png';
+import espn1 from '../../../images/espn1.png';
 
 const Header = () => {
     return (
         <>
-      <Navbar collapseOnSelect expand="lg" sticky="top" bg="dark" variant="dark">
+      <Navbar collapseOnSelect expand="lg" sticky="top" bg="dark"  variant="dark">
         <Container>
           <Navbar.Brand as = {Link} to="/">
-             <img width="50" src={espn} alt="" />
+             <img width="100" src={espn1} alt="" />
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="responsive-navbar-nav" />
           <Navbar.Collapse id="responsive-navbar-nav">
