@@ -6,12 +6,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyDbFPXSMnBBmNzWntnM4ot4b-J92DenMIE",
-  authDomain: "espn-sports-8c6b9.firebaseapp.com",
-  projectId: "espn-sports-8c6b9",
-  storageBucket: "espn-sports-8c6b9.appspot.com",
-  messagingSenderId: "948471595651",
-  appId: "1:948471595651:web:eeee54ce90a4efcdcb11b6"
+  apiKey:process.env.REACT_APP_apiKey,
+  authDomain:process.env.REACT_APP_authDomain,
+  projectId:process.env.REACT_APP_projectId,
+  storageBucket:process.env.REACT_APP_storageBucket,
+  messagingSenderId:process.env.REACT_APP_messagingSenderId,
+  appId:process.env.REACT_APP_appId,
 };
 
 // Initialize Firebase
