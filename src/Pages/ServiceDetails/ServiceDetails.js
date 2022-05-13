@@ -1,16 +1,18 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
+import sports from '../../images/sports.jpg';
 
 const ServiceDetails = () => {
     const {serviceId} = useParams();
     return (
         <div>
-            <h2>welcome to my service Details:{serviceId}</h2>
+            <h2 className="text-center text-info">welcome to my service Details </h2>
             <div className="text-center">
                 <Link to ="/checkout">
-                    <button className="btn btn-info">Proceed Checkout</button>
+                    <button className="btn btn-info"> Proceed Checkout</button>
                 </Link>
             </div>
+            <img src={sports} alt="" />
         </div>
     );
 };

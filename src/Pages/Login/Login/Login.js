@@ -6,9 +6,12 @@ import auth from '../../../firebase.init';
 import './Login.css';
 import SocialLogin from '../SocialLogin/SocialLogin';
 import { sendEmailVerification } from 'firebase/auth';
+import Loading from '../../Shared/Loading/Loading';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = () => {
-   
+
     const emailRef = useRef('');
     const passwordRef = useRef('');
     const navigate = useNavigate();
@@ -20,18 +23,21 @@ const Login = () => {
         user,
         loading,
         error,
-      ] = useSignInWithEmailAndPassword(auth);
-      const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
+    ] = useSignInWithEmailAndPassword(auth);
+    const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
 
-      if(user){
-          navigate(from, {replace: true})
-      }
-
-      if (error) {
-        errorElement = <p className="text-danger mt-2">Error: {error?.message}</p>
+    if (user) {
+        navigate(from, { replace: true })
     }
 
-    const handleSubmit = event =>{
+    if (error) {
+        errorElement = <p className="text-danger mt-2">Error: {error?.message}</p>
+    }
+    if (loading) {
+        return <Loading></Loading>
+    }
+
+    const handleSubmit = event => {
         event.preventDefault();
         const email = emailRef.current.value;
         const password = passwordRef.current.value;
@@ -43,15 +49,15 @@ const Login = () => {
         navigate('/register')
     }
 
-    const resetPassword = async() => {
+    const resetPassword = async () => {
         const email = emailRef.current.value;
         await sendEmailVerification();
-        alert('Sent email');
+        toast('Sent email');
     }
     return (
         <div className="width mx-auto border border-info rounded-3 p-5">
             <h1 className="text-info text-center">Please Login</h1>
-            <Form onSubmit = {handleSubmit}>
+            <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3" controlId="formBasicEmail">
                     <Form.Label>Email address</Form.Label>
                     <Form.Control ref={emailRef} type="email" placeholder="Enter email" required />
@@ -59,17 +65,18 @@ const Login = () => {
 
                 <Form.Group className="mb-3" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
-                    <Form.Control ref = {passwordRef} type="password" placeholder="Password" required />
+                    <Form.Control ref={passwordRef} type="password" placeholder="Password" required />
                 </Form.Group>
-                
+
                 <Button className="w-100 bg-info text-white" type="submit">
                     Login
                 </Button>
             </Form>
             {errorElement}
             <p className="mt-2">New to Sport xTra? <Link to='/register' className="text-info pe-auto text-decoration-none " onClick={navigateRegister}>Please Register</Link></p>
-            <p className="mt-2">Forget Password? <Link to='/register' className="text-info pe-auto text-decoration-none " onClick={resetPassword}>Reset Password</Link></p>
+            <p className="mt-2">Forget Password? <button className="text-info pe-auto text-decoration-none btn btn-link" onClick={resetPassword}>Reset Password</button></p>
             <SocialLogin></SocialLogin>
+            <ToastContainer />
         </div>
     );
 };
