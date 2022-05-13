@@ -13,7 +13,7 @@ const Login = () => {
     const navigate = useNavigate();
     const location = useLocation();
     let from = location.state?.from?.pathname || "/";
-
+    let errorElement;
     const [
         signInWithEmailAndPassword,
         user,
@@ -24,6 +24,10 @@ const Login = () => {
       if(user){
           navigate(from, {replace: true})
       }
+
+      if (error) {
+        errorElement = <p className="text-danger">Error: {error?.message}</p>
+    }
 
     const handleSubmit = event =>{
         event.preventDefault();
@@ -53,6 +57,7 @@ const Login = () => {
                     Login
                 </Button>
             </Form>
+            {errorElement}
             <p className="mt-2">New to Sport xTra? <Link to='/register' className="text-info pe-auto text-decoration-none " onClick={navigateRegister}>Please Register</Link></p>
             <SocialLogin></SocialLogin>
         </div>
