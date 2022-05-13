@@ -1,10 +1,11 @@
 import React, { useRef } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
+import { useSendPasswordResetEmail, useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 import './Login.css';
 import SocialLogin from '../SocialLogin/SocialLogin';
+import { sendEmailVerification } from 'firebase/auth';
 
 const Login = () => {
    
@@ -20,13 +21,14 @@ const Login = () => {
         loading,
         error,
       ] = useSignInWithEmailAndPassword(auth);
+      const [sendPasswordResetEmail] = useSendPasswordResetEmail(auth);
 
       if(user){
           navigate(from, {replace: true})
       }
 
       if (error) {
-        errorElement = <p className="text-danger">Error: {error?.message}</p>
+        errorElement = <p className="text-danger mt-2">Error: {error?.message}</p>
     }
 
     const handleSubmit = event =>{
@@ -36,8 +38,15 @@ const Login = () => {
         // console.log(email, password);
         signInWithEmailAndPassword(email, password)
     }
+
     const navigateRegister = () => {
         navigate('/register')
+    }
+
+    const resetPassword = async() => {
+        const email = emailRef.current.value;
+        await sendEmailVerification();
+        alert('Sent email');
     }
     return (
         <div className="width mx-auto border border-info rounded-3 p-5">
@@ -59,6 +68,7 @@ const Login = () => {
             </Form>
             {errorElement}
             <p className="mt-2">New to Sport xTra? <Link to='/register' className="text-info pe-auto text-decoration-none " onClick={navigateRegister}>Please Register</Link></p>
+            <p className="mt-2">Forget Password? <Link to='/register' className="text-info pe-auto text-decoration-none " onClick={resetPassword}>Reset Password</Link></p>
             <SocialLogin></SocialLogin>
         </div>
     );

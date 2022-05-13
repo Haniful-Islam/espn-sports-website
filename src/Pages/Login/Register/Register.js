@@ -1,23 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import { useCreateUserWithEmailAndPassword } from 'react-firebase-hooks/auth';
 import auth from '../../../firebase.init';
 
 const Register = () => {
+    const [agree, setAgree] = useState(false);
     const [
         createUserWithEmailAndPassword,
         user,
         loading,
         error,
-      ] = useCreateUserWithEmailAndPassword(auth);
+    ] = useCreateUserWithEmailAndPassword(auth);
     const navigate = useNavigate();
 
     const navigateLogin = () => {
         navigate('/login');
     }
-    
-    if(user){
+
+    if (user) {
         navigate('/home')
     }
     const handleRegister = event => {
@@ -25,9 +26,13 @@ const Register = () => {
         const name = event.target.name.value;
         const email = event.target.email.value;
         const password = event.target.password.value;
-        
+        // const agree = event.target.terms.checked;
+        if (agree) {
+            createUserWithEmailAndPassword(email, password);
+        }
 
-        createUserWithEmailAndPassword(email, password);
+
+
     }
     return (
         <div className="width mx-auto border border-info rounded-3 p-5">
@@ -42,12 +47,15 @@ const Register = () => {
                     <Form.Control type="email" placeholder="Enter email" required />
                 </Form.Group>
 
-                <Form.Group className="mb-3" controlId="formBasicPassword">
+                <Form.Group className="mb-2" controlId="formBasicPassword">
                     <Form.Label>Password</Form.Label>
                     <Form.Control type="password" placeholder="Password" required />
                 </Form.Group>
-
-                <Button className="w-100 bg-info text-white" type="submit">
+                <input onClick={() => setAgree(!agree)} type="checkbox" name="terms" id="terms" />
+                <label className={agree ? 'ps-2 text-info' : "ps-2 text-danger"} htmlFor="terms">Accept espn sports Terms and Conditions</label>
+                <Button
+                    disabled ={!agree}
+                    className="w-100 bg-info text-white mt-2" type="submit">
                     Register
                 </Button>
             </Form>
