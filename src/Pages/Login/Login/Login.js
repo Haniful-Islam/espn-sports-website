@@ -51,8 +51,14 @@ const Login = () => {
 
     const resetPassword = async () => {
         const email = emailRef.current.value;
-        await sendEmailVerification();
-        toast('Sent email');
+        if (email) {
+            await sendEmailVerification(email);
+            toast('Sent email');
+        }
+        else{
+            toast('Please enter your email address');
+        }
+
     }
     return (
         <div className="width mx-auto border border-info rounded-3 p-5">
