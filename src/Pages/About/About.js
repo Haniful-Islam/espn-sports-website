@@ -8,7 +8,7 @@ const About = () => {
             <h2 className="text-info my-5 text-center">About Me</h2>
             <div className="row d-flex justify-content-center align-content-center">
             <div className="col-sm-12 col-md-6 ">
-                <img width="400" height="400"  src={hanif} alt = ''/>
+                <img className="img" width="400" height="400"  src={hanif} alt = ''/>
             </div>
             <div className="col-md-6 col-sm-12 mt-4">
                 <h2>Hello, I am </h2>
