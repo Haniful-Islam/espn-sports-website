@@ -51,7 +51,7 @@ const Register = () => {
                     Register
                 </Button>
             </Form>
-            <p>Already have an Account?<Link to="/login" className="text-info text-decoration-none" onClick={navigateLogin}>Please Login</Link></p>
+            <p className="mt-2">Already have an Account?<Link to="/login" className="text-info text-decoration-none" onClick={navigateLogin}>Please Login</Link></p>
 
         </div>
     );
